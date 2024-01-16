@@ -23,6 +23,7 @@
 #include <pcl/visualization/cloud_viewer.h>
 #include <pcl/common/projection_matrix.h>
 #include "Converter.h"
+#include <pcl/io/pcd_io.h>
 
 #include <boost/make_shared.hpp>
 
@@ -119,6 +120,7 @@ void PointCloudMapping::viewer()
             PointCloud::Ptr p = generatePointCloud( keyframes[i], colorImgs[i], depthImgs[i] );
             *globalMap += *p;
         }
+        pcl::io::savePCDFileBinary("vslam.pcd", *globalMap);
         PointCloud::Ptr tmp(new PointCloud());
         voxel.setInputCloud( globalMap );
         voxel.filter( *tmp );
