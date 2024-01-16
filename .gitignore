@@ -97,3 +97,6 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+**/build
+build/

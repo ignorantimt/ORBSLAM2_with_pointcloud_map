@@ -1,30 +1,14 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
-  )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jackey/install/ORB_SLAM2/Examples/ROS/ORB_SLAM2/src/ros_mono.cc" "/home/jackey/install/ORB_SLAM2/Examples/ROS/ORB_SLAM2/build/CMakeFiles/Mono.dir/src/ros_mono.cc.o"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
-
-# Preprocessor definitions for this target.
-set(CMAKE_TARGET_DEFINITIONS_CXX
-  "COMPILEDWITHC11"
-  "ROS_PACKAGE_NAME=\"ORB_SLAM2\""
   )
 
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../include"
-  "/opt/ros/kinetic/include"
-  "/opt/ros/kinetic/include/opencv-3.1.0-dev/opencv"
-  "/opt/ros/kinetic/include/opencv-3.1.0-dev"
-  "../"
-  "../../../.."
-  "../../../../include"
-  "/usr/local/lib/cmake/Pangolin/../../../include"
-  "/usr/include/eigen3"
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/tengfei/LLM_Mani/orb_ws/src/ORBSLAM2_with_pointcloud_map/ORB_SLAM2_modified/Examples/ROS/ORB_SLAM2/src/ros_mono.cc" "CMakeFiles/Mono.dir/src/ros_mono.cc.o" "gcc" "CMakeFiles/Mono.dir/src/ros_mono.cc.o.d"
   )
 
 # Targets to which this target links.
