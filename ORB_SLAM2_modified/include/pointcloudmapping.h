@@ -65,4 +65,20 @@ protected:
     pcl::VoxelGrid<PointT>  voxel;
 };
 
+struct PointTWithID
+{
+    PCL_ADD_POINT4D;
+    PCL_ADD_RGB;
+    uint32_t kfID; // 关键帧ID
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+} EIGEN_ALIGN16;
+
+POINT_CLOUD_REGISTER_POINT_STRUCT(PointTWithID,
+    (float, x, x)
+    (float, y, y)
+    (float, z, z)
+    (uint32_t, rgba, rgba)
+    (uint32_t, kfID, kfID)
+)
+
 #endif // POINTCLOUDMAPPING_H
