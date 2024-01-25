@@ -26,8 +26,8 @@ make -j
 
 cd ..
 
-echo "Converting vocabulary to binary"
-./tools/bin_vocabulary
+# echo "Converting vocabulary to binary"
+# ./tools/bin_vocabulary
 
 
 echo "Building ROS nodes"

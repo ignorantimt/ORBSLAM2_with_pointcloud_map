@@ -119,6 +119,10 @@ void PointCloudMapping::viewer()
         {
             PointCloud::Ptr p = generatePointCloud( keyframes[i], colorImgs[i], depthImgs[i] );
             *globalMap += *p;
+            std::string filename = "test_pics/colorImg_" + std::to_string(i) + ".png";
+            cv::imwrite(filename, colorImgs[i]);
+            filename = "test_pics/depthImg_" + std::to_string(i) + ".png";
+            cv::imwrite(filename, depthImgs[i]);
         }
         pcl::io::savePCDFileBinary("vslam.pcd", *globalMap);
         PointCloud::Ptr tmp(new PointCloud());
@@ -129,5 +133,39 @@ void PointCloudMapping::viewer()
         cout << "show global map, size=" << globalMap->points.size() << endl;
         lastKeyframeSize = N;
     }
+    cv::Size colorFrameSize = colorImgs[0].size();
+    cv::VideoWriter videoWriter("color_video.avi", 
+        cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30, colorFrameSize, true);
+    // 检查是否正确打开了输出文件
+    if (!videoWriter.isOpened()) {
+        std::cerr << "无法创建视频文件！" << std::endl;
+    }
+
+    // 遍历并写入每一帧图像
+    for (const auto &img : colorImgs) {
+        videoWriter.write(img);
+    }
+
+    // 释放VideoWriter资源，关闭视频文件
+    videoWriter.release();
+
+    cv::Size DepthFrameSize = depthImgs[0].size();
+    cv::VideoWriter videoWriter2("depth_video.avi", 
+        cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30, DepthFrameSize, true);
+    if (!videoWriter2.isOpened()) {
+        std::cerr << "无法创建视频文件！" << std::endl;
+    }
+
+    // 归一化深度图像并写入
+    for (const auto &depthImg : depthImgs) {
+        cv::Mat depthImgNormalized;
+        double minVal, maxVal;
+        cv::minMaxIdx(depthImg, &minVal, &maxVal);
+        depthImg.convertTo(depthImgNormalized, CV_8U, 255.0 / (maxVal - minVal), -minVal * 255.0 / (maxVal - minVal));
+
+        videoWriter2.write(depthImgNormalized);
+    }
+
+    videoWriter2.release();
 }
 
